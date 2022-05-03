@@ -1,0 +1,42 @@
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+}
+
+h2 {
+    color: white;
+    text-align: center;
+    margin-right: 30px;
+}
+
+.string {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.second {
+    margin-top: 100px;
+}
+
+.buttons_for_users {
+    display: block ruby;
+
+}
+
+button {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 765px) {
+    .string {
+        flex-direction: column;
+        align-items: center;
+    }
+    h1 {
+        font-size: 30px;
+    }
+}

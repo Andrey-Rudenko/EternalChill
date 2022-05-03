@@ -1,0 +1,29 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/posts.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %}Все записи {% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1>Записи</h1>
+        <div class="posts">
+            {% for steppost in all_posts %}
+                <div class="post">
+                    <div class="post_header">
+                        <h3>{{ steppost.author }}</h3>
+                        <h4>{{ steppost.date_time }}</h4>
+                        <h2>{{ steppost.title }}</h2>
+                        <hr>
+                    </div>
+
+                    <p>{{ steppost.paragraph }}</p>
+                    {% if steppost.image.url != '/media/default.jpg' %}
+                        <img src="{{ steppost.image.url }}" alt="img">
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/following.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %} Главная {% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1>Заявки к вам в друзья:</h1>
+        {% for request in to_you_requests %}
+            <div class="string">
+                <h2>#{{ request.from_user.username }}</h2>
+                <div class="buttons_for_users">
+                    <a href="/profile/{{ request.from_user.username }}/">
+                        <button type="button" class="btn btn-info">Профиль</button>
+                    </a>
+                    <a href="/friendship/accept/{{ request.from_user.username }}">
+                        <button type="button" class="btn btn-success">Принять</button>
+                    </a>
+                    <a href="/friendship/reject/{{ request.from_user.username }}">
+                        <button type="button" class="btn btn-danger">Отклонить</button>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        <h1 class="second">Отправленные вами заявки в друзья:</h1>
+        {% for request in you_requests %}
+            <div class="string">
+                <h2>#{{ request.to_user.username }}</h2>
+                <div class="buttons_for_users">
+                    <a href="/profile/{{ request.to_user.username }}/">
+                        <button type="button" class="btn btn-info">Профиль</button>
+                    </a>
+                    <a href="/friendship/cancel/{{ request.to_user.username }}">
+                        <button type="button" class="btn btn-danger">Отменить</button>
+                    </a>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

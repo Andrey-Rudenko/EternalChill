@@ -1,0 +1,12 @@
+{% extends "users/base.html" %}
+{% block content %}
+    <div class="container" style="max-width: 800px; margin-top: 50px">
+        <div class="form"style="background-color: white; padding: 40px; border-radius: 1rem">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-info btn-lg">Опубликовать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

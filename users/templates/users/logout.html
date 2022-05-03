@@ -1,0 +1,23 @@
+{% extends "users/base.html" %}
+{% block title %}Logout{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row rowBg align-items-center justify-content-center">
+            <div class="card" style="width: 18rem; margin-top: 100px">
+                <div class="card-body" >
+                    <h5 class="card-title">Вы вышли из аккаунта</h5>
+                    <p class="card-text">
+                        Спасибо за ваше время, свяжитесь со мной для любых комментариев или предложений, используя мой
+                        адрес электронной почты. (andrey.rudenko.200333@gmail.com)
+                    </p>
+                    <br>
+                    <hr>
+                    <a href="{% url 'login' %}" class="btn btn-info">Заново войти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock content %}

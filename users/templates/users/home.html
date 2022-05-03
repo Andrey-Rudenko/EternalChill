@@ -1,0 +1,56 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/home.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %} Главная {% endblock title %}
+{% block content %}
+    <div class="preview">
+        <div class="full_content">
+            <div class="container">
+                <div class="preview_content">
+                    <h1>Социальная сеть со своим блекджеком и лолями<br>
+                    </h1>
+                    <img src="{% static "users/images/rey.gif" %}" alt="rey" class="rey">
+                </div>
+                {% if not request.user.is_authenticated %}
+                    <div class="buttons">
+                        <a class="button" href="{% url 'login' %}" id="button_left">
+                            <div class="outer">
+                                <div class="height">
+                                    <div class="inner">Login</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="button" href="{% url 'users-register' %}" id="button_right">
+                            <div class="outer">
+                                <div class="height">
+                                    <div class="inner">Register</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="buttons">
+                        <a class="button" href="/profile/{{ request.user.username }}/" id="button_left">
+                            <div class="outer">
+                                <div class="height">
+                                    <div class="inner">Профиль</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="button" href="{% url 'logout' %}" id="button_right">
+                            <div class="outer">
+                                <div class="height">
+                                    <div class="inner">Выйти</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+                <img src="{% static "users/images/rey.gif" %}" alt="rey" class="rey2">
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

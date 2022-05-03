@@ -1,0 +1,54 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/profile_all.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %} Профиль {{ other_user.username }}{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="profile_content">
+            <img src="{% static 'users/images/ram.gif' %}" style="height: 300px; margin-top: 250px; margin-right: 50px"
+                 class="ram" alt="">
+            <div class="profile_card">
+                <h1>Профиль {{ other_user.username }}</h1>
+                <img class="rounded-circle account-img" src="{{ other_user.profile.avatar.url }}"
+                     style="cursor: pointer;"
+                     alt=""/>
+                <p>{{ other_user.profile.bio }}</p>
+                <ul>
+                    <li><b>Имя:</b> {{ other_user.first_name }}</li>
+                    <li><b>Фамилия:</b> {{ other_user.last_name }}</li>
+                    <li style="font-size: 15px"><b>Почта:</b> {{ other_user.email }}</li>
+                    <li><b>Дата регистрации: </b>{{ other_user.date_joined }}</li>
+                    <li><b>ID: </b>{{ other_user.id }}</li>
+                    {% if other_user.is_superuser == True %}
+                        <h1>О мой бог, это админ!</h1>
+                    {% endif %}
+                </ul>
+                <div class="buttons_for_users">
+                    <a href="/friends/{{ other_user.username }}">
+                        <button type="button" class="btn btn-info">Список друзей</button>
+                    </a>
+                    {% if not friends and not friend_request %}
+                        <a href="/users/friendship/add_friend/{{ other_user.username }}/">
+                            <button type="button" class="btn btn-info">Добавить в друзья</button>
+                        </a>
+                    {% elif not friends and friend_request == "you" %}
+                        <button type="button" class="btn btn-light" disabled>Заявка отправлена</button>
+                    {% elif not friends and friend_request == "them" %}
+                        <button type="button" class="btn btn-light" disabled>В заявках</button>
+                    {% else %}
+                        <button type="button" class="btn btn-light" disabled>В друзьях</button>
+                        <a href="/friendship/unfriend/{{ other_user.username }}">
+                            <button type="button" class="btn btn-danger">Удалить из друзей</button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <img src="{% static 'users/images/rem.gif' %}" style="height: 300px; margin-top: 250px; margin-left: 50px"
+                 class="ram" alt="">
+        </div>
+        <img src="{% static 'users/images/rem_and_ram.gif' %}" class="rem_and_ram" alt="">
+
+    </div>
+{% endblock %}

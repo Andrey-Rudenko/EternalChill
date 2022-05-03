@@ -1,0 +1,35 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/users.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %}Все пользователи {% endblock title %}
+{% block content %}
+    <h1 class="users_h">Все пользователи</h1>
+
+    <div class="container">
+        <div class="row ">
+            {% for post in ava %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="users_cards">
+                        <div class="info_block">
+                            <img class="rounded-circle account-img" src="{{ post.avatar.url }} "
+                                 style="cursor: pointer;"
+                                 alt="avatar"/>
+                            <ul>
+                                <li><b>Ник:</b> {{ post.user.username }}</li>
+                                <li><b>Имя:</b> {{ post.user.first_name }} {{ post.user.last_name }}</li>
+                            </ul>
+                        </div>
+                        <p><b>Статус:</b> {{ post.bio }}</p>
+                        <div class="buttons_for_users">
+                            <a href="/profile/{{ post.user.username }}/"><button type="button" class="btn btn-info">Профиль</button></a>
+
+                        </div>
+                        <h1>{{ count_follows }}</h1>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

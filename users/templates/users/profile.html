@@ -1,0 +1,55 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/profile.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %}Ваш профиль{% endblock title %}
+{% block content %}
+    <div class="container">
+        {% if user_form.errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="form_errors">
+                    {% for key, value in user_form.errors.items %}
+                        <strong>{{ value }}</strong>
+                    {% endfor %}
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <div class="form-content">
+            <img src="{% static 'users/images/ram.gif' %}" style="height: 300px; margin-top: 300px" class="ram" alt="">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="row my-3 p-3">
+                            <img class="rounded-circle account-img" src="{{ user.profile.avatar.url }} "
+                                 style="cursor: pointer;"
+                                 alt=""/>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1"><b>Ник:</b></label>
+                            {{ user_form.username }}
+                            <label class="small mb-1"><b>Почта:</b></label>
+                            {{ user_form.email }}
+                        </div>
+                        <div class="form-group">
+                            <a href="{% url 'password_change' %}">Сменить пароль</a>
+                            <hr>
+                            <label class="small mb-1"><b>Сменить аватар:<br>(Только квадратные изображения)</b></label>
+                            {{ profile_form.avatar }}
+                        </div>
+                        <label class="small mb-1"><b>Статус:</b></label> {{ profile_form.bio }}
+                        <br>
+                        <button type="submit" class="btn btn-dark btn-lg">Сохранить</button>
+                        <button type="reset" class="btn btn-dark btn-lg">Сбросить</button>
+                    </div>
+                </div>
+            </form>
+            <img src="{% static 'users/images/rem.gif' %}" style="height: 300px; margin-top: 300px" class="rem" alt="">
+        </div>
+        <img src="{% static 'users/images/rem_and_ram.gif' %}" class="rem_and_ram" alt="">
+    </div>
+{% endblock content %}

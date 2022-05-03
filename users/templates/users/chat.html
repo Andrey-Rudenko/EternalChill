@@ -1,0 +1,41 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/chat.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %}Чат{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="page">
+            <div class="message_area" id="block">
+                {% for i in all_message %}
+                    <div class="message">
+                        <h5>{{ i.author }} </h5>
+                        <h6>{{ i.date_time }}</h6>
+                        <p>{{ i.text }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-info btn-lg">Опубликовать</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var block = document.getElementById("block");
+        block.scrollTop = 9999;
+
+        function mode() {
+            $.ajax({
+                url: 'mode.php',
+                success: function (data) {
+                    $('#block').html(data);
+                }
+            });
+        };
+
+        setInterval(mode, 10000);
+    </script>
+{% endblock content %}

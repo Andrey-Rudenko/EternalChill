@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Techno28';
+    src: url('../fonts/Techno28.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'cyberfall_cyrillic';
+    src: url('../fonts/cyberfall_cyrillic.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ocr_onectt';
+    src: url('../fonts/ocr_onectt.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    background-color: #2A2139;
+    font-family: Techno28, serif;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link {
+    color: yellow;
+    font-family: Techno28, serif;
+    font-size: 30px;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: deeppink;
+}
+
+.alert {
+    margin-bottom: -2.36rem;
+}
+
+
+.alert-dismissible .close {
+    top: 8px;
+}
+
+h1 {
+    color: #ffcc00;
+    font-family: cyberfall_cyrillic, serif;
+    font-style: italic;
+    text-shadow: -5px 5px 0 #00e6e6, -10px 10px 0 #01cccc, -15px 15px 0 #00bdbd, 0 0 0 #F73BFF;
+}
+.dropdown-item {
+    width: auto;
+}

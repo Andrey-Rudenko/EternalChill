@@ -1,0 +1,38 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block styles %}
+    <link type="text/css" href="{% static 'users/css/users.css' %}" rel="stylesheet"/>
+{% endblock styles %}
+{% block title %} Друзья {{ friend.username }}{% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1 style="margin-bottom: 50px">Друзья {{ other_user.username }}:</h1>
+        <div class="row ">
+            {% if friends %}
+                {% for friend in friends %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="users_cards">
+                            <div class="info_block">
+                                <img class="rounded-circle account-img" src="{{ friend.profile.avatar.url }}"
+                                     style="cursor: pointer;"
+                                     alt="avatar"/>
+                                <ul>
+                                    <li><b>Ник:</b> {{ friend.username }}</li>
+                                    <li><b>Имя:</b> {{ friend.first_name }} {{ friend.last_name }}</li>
+                                </ul>
+                            </div>
+                            <p><b>Статус:</b> {{ friend.profile.bio }}</p>
+                            <div class="buttons_for_users">
+                                <a href="/profile/{{ friend.username }}">
+                                    <button type="button" class="btn btn-info">Профиль</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1>У {{ other_user.username }} нет друзей</h1>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

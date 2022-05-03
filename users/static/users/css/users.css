@@ -1,0 +1,51 @@
+.users_h {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+.users_cards {
+    padding: 10px;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    margin-bottom: 15px;
+    border: 0.2rem solid #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 .2rem #fff,
+    0 0 .1rem #fff,
+    0 0 1rem #bc13fe,
+    0 0 0.4rem #bc13fe,
+    0 0 1.4rem #bc13fe,
+    inset 0 0 0.7rem #bc13fe;
+    font-size: 20px;
+    font-family:ocr_onectt;
+    height: 100%;
+}
+
+.info_block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rounded-circle {
+    border: 0.2rem solid #fff;
+    border-radius: 2rem;
+    box-shadow: 0 0 .2rem #fff,
+    0 0 .1rem #fff,
+    0 0 1rem #bc13fe,
+    0 0 0.4rem #bc13fe,
+    0 0 1.4rem #bc13fe,
+    inset 0 0 0.7rem #bc13fe;
+}
+.buttons_for_users {
+    margin-left: 5px;
+    margin-top: 20px;
+}
+.buttons_for_users button{
+    font-size: 20px;
+    font-family: Techno28;
+}
+.col-lg-4 {
+    margin-bottom: 20px;
+}

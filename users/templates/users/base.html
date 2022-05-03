@@ -1,0 +1,109 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--Font awesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+    <title>{% block title %} {% endblock %} </title>
+    <link type="text/css" href="{% static 'users/css/base.css' %}" rel="stylesheet"/>
+    <link rel="shortcut icon" href="{% static 'users/images/arcade.ico' %}" type="image/x-icon">
+
+    {% block styles %}
+    {% endblock styles %}
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark " style="background-color: #201C2B">
+    <div class="container">
+        <a href="/" class="logo"><img src="{% static "users/images/logo.png" %}" alt="ETERNAL CHILL"></a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span><img src="{% static "users/images/menu.svg" %}" alt="menu"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                {% if not request.user.is_authenticated %}
+                    <a href="{% url 'login' %}" class="nav-item nav-link">Вход</a>
+                    <a href="{% url 'users-register' %}" class="nav-item nav-link">Регистрация</a>
+                    <a href="{% url 'posts' %}" class="nav-item nav-link">Записи</a>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    <a href="/profile/{{ request.user.username }}/" class="nav-item nav-link">Профиль</a>
+                    <a href="/chat" class="nav-item nav-link">Чат</a>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Пользователи
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark"
+                                aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'users_list' %}">Все пользователи</a></li>
+                                <li><a class="dropdown-item" href="/friends/{{ user }}">Друзья</a></li>
+                                <li><a class="dropdown-item" href="{% url 'following_list' %}">Заявки в друзья</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Записи
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark"
+                                aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'posts' %}">Все записи</a></li>
+                                <li><a class="dropdown-item" href="{% url 'create_post' %}">Создать запись</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <a href="{% url 'logout' %}" class="nav-item nav-link">Выход</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+{% if messages %}
+    <div class="container">
+        <div class="alert alert-dismissible" role="alert">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span><img src="{% static "users/images/xw.svg" %}" alt="menu"></span>
+            </button>
+        </div>
+    </div>
+{% endif %}
+{% block content %}{% endblock %}
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<!-- A plugin for password show/hide  -->
+<script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+
+</body>
+</html>
