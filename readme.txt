@@ -1,3 +1,4 @@
+#social network
 1) install python
 2) create and activate virtual environment (python -m venv venv)(venv/Scripts/activate)
 3) install all requirements (pip install -r requirements.txt)
